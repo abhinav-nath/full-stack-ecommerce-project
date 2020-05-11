@@ -1,17 +1,28 @@
 <div class="main-content">
     <div class="section-content section-content-p3">
         <div class="container-fluid">
+
             <div class="row">
-                <!--loop over the collection of products-->
+
+                <!-- loop over the collection of products -->
                 <div *ngFor="let product of products" class="col-md-3">
+
                     <div class="product-box">
                         <img src="{{ product.imageUrl }}" class="img-responsive">
                         <h1>{{ product.name }}</h1>
                         <div class="price">{{ product.unitPrice | currency: "USD" }}</div>
                         <a href="#" class="primary-btn">Add to Cart</a>
                     </div>
+
                 </div>
+
+                <!-- if products list is empty then display a message -->
+                <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
+                    No products found.
+                </div>
+
             </div>
+
         </div>
     </div>
 </div>
