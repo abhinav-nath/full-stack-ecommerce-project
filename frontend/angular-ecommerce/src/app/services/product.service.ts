@@ -18,10 +18,17 @@ export class ProductService {
   // httpClient will be injected automatically by Angular's dependency injection
   constructor(private httpClient: HttpClient) { }
 
+  getProduct(productId: number): Observable<Product> {
+
+    // need to build the URL based on the product id
+    const productUrl = `${this.baseUrl}/${productId}`
+
+    return this.httpClient.get<Product>(productUrl);
+  }
 
   getProductList(categoryId: number): Observable<Product[]> {
 
-    // need to build URL based on the category id
+    // need to build the URL based on the category id
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${categoryId}`
 
     return this.getProducts(searchUrl);
@@ -40,7 +47,7 @@ export class ProductService {
 
   searchProducts(searchKeyword: string): Observable<Product[]> {
 
-    // need to build URL based on the search keyword
+    // need to build the URL based on the search keyword
     const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${searchKeyword}`
 
     return this.getProducts(searchUrl);
