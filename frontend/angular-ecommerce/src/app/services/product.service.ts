@@ -18,6 +18,7 @@ export class ProductService {
   // httpClient will be injected automatically by Angular's dependency injection
   constructor(private httpClient: HttpClient) { }
 
+
   getProduct(productId: number): Observable<Product> {
 
     // need to build the URL based on the product id
@@ -25,6 +26,7 @@ export class ProductService {
 
     return this.httpClient.get<Product>(productUrl);
   }
+
 
   getProductList(categoryId: number): Observable<Product[]> {
 
@@ -35,6 +37,7 @@ export class ProductService {
 
   }
 
+
   getProductListPaginated(page: number, pageSize: number, categoryId: number): Observable<GetResponseProducts> {
 
     // need to build the URL based on the category id, page and size
@@ -43,6 +46,7 @@ export class ProductService {
     return this.httpClient.get<GetResponseProducts>(searchUrl);
 
   }
+
 
   getProductCategories(): Observable<ProductCategory[]> {
 
@@ -59,6 +63,16 @@ export class ProductService {
     const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${searchKeyword}`
 
     return this.getProducts(searchUrl);
+
+  }
+
+
+  searchProductsPaginated(page: number, pageSize: number, searchKeyword: string): Observable<GetResponseProducts> {
+
+    // need to build the URL based on the search keyword, page and size
+    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${searchKeyword}&page=${page}&size=${pageSize}`;
+
+    return this.httpClient.get<GetResponseProducts>(searchUrl);
 
   }
 
@@ -86,6 +100,7 @@ interface GetResponseProducts {
     number: number
   }
 }
+
 
 interface GetResponseProductCategory {
   // unwraps the JSON from Spring Data REST _embedded entry
