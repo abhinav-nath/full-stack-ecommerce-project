@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem } from 'src/app/model/cart-item';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -22,7 +24,7 @@ export class ProductListComponent implements OnInit {
 
   previousKeyword: string = null;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) { }
+  constructor(private productService: ProductService, private cartService: CartService, private route: ActivatedRoute) { }
 
 
   // similar to @PostConstruct of Spring
@@ -115,7 +117,9 @@ export class ProductListComponent implements OnInit {
     console.log(`Adding to cart: ${product.name}, ${product.unitPrice}`);
 
     // do the real work
+    const theCartItem = new CartItem(product);
     
+    this.cartService.addToCart(theCartItem);
   }
 
 }

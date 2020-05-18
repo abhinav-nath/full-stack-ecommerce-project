@@ -28,7 +28,7 @@ export class CartService {
       // find the item in the cart based on the item id
       for (let cartItem of this.cartItems) {
         if (cartItem.id === theCartItem.id) {
-          existingCartItem = theCartItem;
+          existingCartItem = cartItem;
           break;
         }
       }
@@ -82,8 +82,8 @@ export class CartService {
       console.log(`name: ${cartItem.name}, quantity: ${cartItem.quantity}, unitPrice: ${cartItem.unitPrice}, subTotalPrice: ${subTotalPrice}`);
     }
 
-    console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totatQuantity: ${totalQuantityValue}`);
-    console.log('----');
+    console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue}`);
+    console.log("----");
   }
 
 }
