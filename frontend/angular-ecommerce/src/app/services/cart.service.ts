@@ -9,7 +9,7 @@ export class CartService {
 
   cartItems: CartItem[] = [];
 
-  //Subject is a subclass of Observable. We can use Subject to publish events. The event will be sent to all of the subscribers
+  // Subject is a subclass of Observable. We can use Subject to publish events. The event will be sent to all of the subscribers.
   totalPrice: Subject<number> = new Subject<number>();
   totalQuantity: Subject<number> = new Subject<number>();
 
