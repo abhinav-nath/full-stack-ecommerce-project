@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/model/cart-item';
 import { CartService } from 'src/app/services/cart.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-cart-details',
@@ -50,6 +51,11 @@ export class CartDetailsComponent implements OnInit {
 
   decrementQuantity(cartItem: CartItem) {
     this.cartService.decrementQuantity(cartItem);
+  }
+
+
+  remove(cartItem: CartItem) {
+    this.cartService.remove(cartItem);
   }
 
 }
